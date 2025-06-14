@@ -7,7 +7,8 @@ function App() {
         </div>
         <div className="flex gap-2">
           <div className="dropdown dropdown-end mx-5">
-            <div
+            <div 
+            
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
