@@ -1,11 +1,20 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import type { apiResponse, CustomAxiosError, User } from "../utils/types";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constants";
+import { useSnackbar } from "../context/snackbar";
 
 type LoginData = {
   emailId: string;
   password: string;
 };
 export const Login = () => {
+  const { showSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,12 +25,22 @@ export const Login = () => {
   const onSubmit = async (data: LoginData) => {
     console.log("Login Data:", data);
     try {
-      const res = axios.post("http://localhost:3000/login", data, {
-        withCredentials: true,
-      });
-
-      console.log(res);
-    } catch (e) {
+      const res: apiResponse<User> = await axios.post(
+        `${BASE_URL}/login`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      if (res.data) dispatch(addUser(res.data.data));
+      showSnackbar("Login Successfully", "Success");
+      navigate("/feed");
+    } catch (e: unknown) {
+      const err = e as CustomAxiosError;
+      showSnackbar(
+        err?.response?.data || "Invalid Username or Password",
+        "Error"
+      );
       console.log(e);
     }
   };
