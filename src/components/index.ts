@@ -1,5 +1,7 @@
 export {Navbar} from './Navbar'
 export {Body} from './Body'
 export {Footer} from './Footer'
+export {EditProfile} from './EditProfile'
 export {Login} from './Login'
+export {Feed} from './feed'
 export {Snackbar} from'./Snackbar'

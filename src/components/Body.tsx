@@ -25,7 +25,7 @@ export const Body = () => {
           withCredentials: true,
         }
       );
-      dispatch(addUser(res.data.data));
+      dispatch(addUser(res.data));
     } catch (e: unknown) {
       const err = e as CustomAxiosError;
       if (err.status === 401) navigate("/login");
@@ -38,7 +38,16 @@ export const Body = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          padding: "16px 32px",
+          marginBottom: "62px",
+        }}
+      >
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

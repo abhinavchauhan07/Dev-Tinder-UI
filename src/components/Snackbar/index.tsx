@@ -26,12 +26,9 @@ export const Snackbar = ({
         padding: "16px 32px",
       }}
     >
-      <span>{message}</span>
+      <span style={{ color: "white" }}>{message}</span>
       <span
-        style={{
-          cursor: "pointer",
-          fontSize: "16px",
-        }}
+        style={{ color: "white", cursor: "pointer", fontSize: "16px" }}
         onClick={onClose}
       >
         ×

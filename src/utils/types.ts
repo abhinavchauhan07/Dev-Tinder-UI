@@ -6,6 +6,7 @@ export type User={
   lastName: string;
   password: string; 
   photoUrl: string; 
+  gender?:string
   skills: string[]; 
   __v: number;
   ts?: string;
@@ -14,6 +15,7 @@ export type User={
 
 export type StoreType={
   user:User
+  feed:User[]
 }
 export type apiResponse<T>={
   data:{
